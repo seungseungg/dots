@@ -1,0 +1,2 @@
+# script to install configurations
+
