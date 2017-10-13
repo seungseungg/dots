@@ -2,7 +2,7 @@
 export PS1="seung🐶  \[$(tput sgr0)\]\[\033[38;5;157m\]\W\[$(tput sgr0)\]\[\033[38;5;15m\] \\$ \[$(tput sgr0)\]"
 
 ## z install ##
-. $HOME/bin/z.sh
+. $HOME/.z.sh
 
 ## aliases and functions ##
 if [ -f ~/.bash_aliases ]; then
@@ -19,6 +19,6 @@ export NVM_DIR="/Users/SeungHeeHan/.nvm"
 
 # setting \C-; as clear screen
 # in iterm set keymapping to send escape sequence
-# in this case \C-; to [[59;6u
+# in this case \C-; to \[[59;6u
 bind '"[[59;6u": "\C-xS"'
 bind -x '"\C-xS": clear'
