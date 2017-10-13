@@ -2,7 +2,7 @@
 export PS1="seung🐶  \[$(tput sgr0)\]\[\033[38;5;157m\]\W\[$(tput sgr0)\]\[\033[38;5;15m\] \\$ \[$(tput sgr0)\]"
 
 ## z install ##
-. $HOME/.z.sh
+. $HOME/bin/.z.sh
 
 ## aliases and functions ##
 if [ -f ~/.bash_aliases ]; then
