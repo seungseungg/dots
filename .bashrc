@@ -16,3 +16,9 @@ export NVM_DIR="/Users/SeungHeeHan/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# setting \C-; as clear screen
+# in iterm set keymapping to send escape sequence
+# in this case \C-; to [[59;6u
+bind '"[[59;6u": "\C-xS"'
+bind -x '"\C-xS": clear'
