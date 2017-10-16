@@ -9,7 +9,7 @@ alias o='open'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
-alias gb='git br'
+alias gb='git branch'
 alias gpr='git pull --rebase'
 
 mkcd() { mkdir "$@" && cd "$_"; }
