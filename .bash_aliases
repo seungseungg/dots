@@ -8,7 +8,7 @@ alias g='git'
 alias o='open'
 alias gs='git status'
 alias ga='git add'
-alias gc='git ci'
+alias gc='git commit'
 alias gb='git br'
 alias gpr='git pull --rebase'
 
