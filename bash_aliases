@@ -6,6 +6,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias t='tmux'
 alias g='git'
 alias o='open'
+alias p='pwd'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
