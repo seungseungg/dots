@@ -15,6 +15,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'junegunn/fzf'
 
 call vundle#end()
 filetype plugin indent on
@@ -27,6 +30,11 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>e :e
 
+"key bindings for copying and pasting from clipboard
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+
+
 nnoremap <Leader><Up> <C-W>+
 
 " remove trailing whitespaces
@@ -37,6 +45,9 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
   endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" allow backspacing everything in insert mode
+set backspace=indent,eol,start
 
 " status line
 set laststatus=2
@@ -59,10 +70,6 @@ set tw=0
 syntax enable
 colorscheme lucid
 set term=screen-256color
-
-" merlin setup
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 " airline setup
 let g:airline_theme = 'zenburn'
