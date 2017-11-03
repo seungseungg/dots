@@ -45,8 +45,6 @@ nnoremap <Leader>e :e
 noremap <Leader>y "*y
 noremap <Leader>p "*p
 
-nnoremap <Leader><Up> <C-W>+
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                            FUNCTIONS                                             "
@@ -158,7 +156,9 @@ let g:easy_align_delimiters = {'/': { 'pattern': '//' }}
 let g:easy_align_ignore_groups = ['String']
 
 "" fzf setup
-command! Fzd call fzf#run({'dir':'~/Desktop', 'sink':'e'})
+command! Fzm call fzf#run({'dir':'~/src/server/metaserver', 'sink':'e'})
+command! Fzmv call fzf#run({'dir':'~/src/server/metaserver', 'sink':'vs'})
+command! Fzmh call fzf#run({'dir':'~/src/server/metaserver', 'sink':'sp'})
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
