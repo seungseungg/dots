@@ -13,8 +13,9 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'haya14busa/vim-easyoperator-line'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'junegunn/fzf'
@@ -34,7 +35,6 @@ nnoremap <Leader>e :e
 noremap <Leader>y "*y
 noremap <Leader>p "*p
 
-
 nnoremap <Leader><Up> <C-W>+
 
 " remove trailing whitespaces
@@ -45,6 +45,47 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
   endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" resizing splits
+"nnoremap <S-k> :normal <c-r>=Resize('+')<CR><CR>
+"nnoremap <S-j> :normal <c-r>=Resize('-')<CR><CR>
+"nnoremap <S-h> :normal <c-r>=Resize('<')<CR><CR>
+"nnoremap <S-l> :normal <c-r>=Resize('>')<CR><CR>
+"
+"function! Resize(dir)
+"  let this = winnr()
+"  if '+' == a:dir || '-' == a:dir
+"    execute "normal <c-w>k"
+"    let up = winnr()
+"    if up != this
+"      execute "normal <c-w>j"
+"      let x = 'bottom'
+"    else
+"      let x = 'top'
+"    endif
+"  elseif '>' == a:dir || '<' == a:dir
+"    execute "normal <c-w>h"
+"    let left = winnr()
+"    if left != this
+"      execute "normal <c-w>l"
+"      let x = 'right'
+"    else
+"      let x = 'left'
+"    endif
+"  endif
+"  if (a:dir == '+' && x == 'bottom') || (a:dir == '-' && x == 'top')
+"    return "5\<c-v>\<c-w>+"
+"  elseif (a:dir == '-' && x  == 'bottom') || (a:dir == '+' && x == 'top')
+"    return "5\<c-v>\<c-w>-"
+"  elseif (a:dir == '<' && x == 'left') || (a:dir == '>' && x == 'right')
+"    return "5\<c-v>\<c-w><"
+"  elseif (a:dir == '>' && x == 'left') || (a:dir == '<' && x == 'right')
+"    return "5\<c-v>\<c-w>>"
+"  else
+"    echo "oops. what are you doing lol"
+"    return ""
+"  endif
+"endfunction
 
 " allow backspacing everything in insert mode
 set backspace=indent,eol,start
@@ -71,8 +112,13 @@ syntax enable
 colorscheme lucid
 set term=screen-256color
 
+"" merlin setup
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
 " airline setup
 let g:airline_theme = 'zenburn'
+let g:airline#extensions#tabline#enabled = 1
 
 " easymotion setup
 let g:Easymotion_smartcase = 1
@@ -81,15 +127,15 @@ omap / <Plug>(easymotion-tn)
 map ? <Plug>(easymotion-sn)
 omap ? <Plug>(easymotion-tn)
 
-" ctrlp setup
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '.(git|hg|svn)$|_build$',
-  \ }
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+"" easy-align setup
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+let g:easy_align_delimiters = {'/': { 'pattern': '//' }}
+let g:easy_align_ignore_groups = ['String']
 
 " vagrantfile settings
 autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
