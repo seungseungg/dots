@@ -1,3 +1,8 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                         VUNDLE SETTINGS                                          "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" commands required for vundle
 set nocompatible
 filetype off
 
@@ -23,6 +28,11 @@ Plugin 'junegunn/fzf'
 call vundle#end()
 filetype plugin indent on
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                          KEY BINDINGS                                            "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " set leader key
 let mapleader = "\<Space>"
 
@@ -36,6 +46,11 @@ noremap <Leader>y "*y
 noremap <Leader>p "*p
 
 nnoremap <Leader><Up> <C-W>+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                            FUNCTIONS                                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " remove trailing whitespaces
 fun! <SID>StripTrailingWhitespaces()
@@ -116,6 +131,11 @@ set term=screen-256color
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                         PLUGIN SETTINGS                                          "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " airline setup
 let g:airline_theme = 'zenburn'
 let g:airline#extensions#tabline#enabled = 1
@@ -137,18 +157,26 @@ nmap ga <Plug>(EasyAlign)
 let g:easy_align_delimiters = {'/': { 'pattern': '//' }}
 let g:easy_align_ignore_groups = ['String']
 
-" vagrantfile settings
-autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
+"" fzf setup
+command! Fzd call fzf#run({'dir':'~/Desktop', 'sink':'e'})
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   VARIOUS FILE TYPE SETTINGS                                     "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " cupfile settings
 autocmd BufRead,BufNewFile *.cup set filetype=cup
 autocmd FileType cup setlocal shiftwidth=4 softtabstop=4 expandtab
-
-" xi settings
-autocmd BufRead,BufNewFile *.xi set filetype=xi
 
 " java settings
 autocmd FileType java setlocal shiftwidth=4 softtabstop=4 expandtab
 
 " python settings
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab
+
+" vagrantfile settings
+autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
+
+" xi settings
+autocmd BufRead,BufNewFile *.xi set filetype=xi
